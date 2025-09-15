@@ -34,11 +34,12 @@ To run the Flask API on your local machine:
 1. Clone this repository:
 
    ```bash
-   git clone https://github.com/ramymohamed10/rest-api-demo.git
+   git clone https://github.com/ramymohamed10/25F_CST8916_REST-API-DEMO.git
+   ```
    
 2. Navigate to the project directory:
    ```bash
-   cd flask-rest-api-demo
+   cd 25F_CST8916_REST-API-DEMO
 3. Install the dependencies:
    ```bash
    pip install -r requirements.txt
@@ -66,3 +67,51 @@ You can learn more about Azure App Service and its features in the [official doc
 
 To learn how to deploy a Python web app (Django, Flask, or FastAPI) to Azure App Service, refer to the [Quickstart Guide](https://learn.microsoft.com/en-us/azure/app-service/quickstart-python?tabs=flask%2Cwindows%2Cazure-cli%2Cazure-cli-deploy%2Cdeploy-instructions-azportal%2Cterminal-bash%2Cdeploy-instructions-zip-azcli). This guide walks you through deploying a Python web app to Azure, leveraging App Service to run your app in a Linux server environment.
 
+## ASCII diagram
+
+```
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                         Flask REST API — Big Picture                         │
+├──────────────────────────────────────────────────────────────────────────────┤
+│ Clients                                                                      │
+│ ┌────────────────────────┐     HTTP (JSON)     ┌───────────────────────────┐ │
+│ │ VS Code REST Client    │  ─────────────────► │  Flask App (app.py)       │ │
+│ │ (test-api.http)        │ ◄─────────────────  │  run: python app.py       │ │
+│ └────────────────────────┘                     │  port: 8000               │ │
+│ ┌────────────────────────┐                     │                           │ │
+│ │ Browser / curl /Postman│                     │ Routes /  Endpoints       │ │
+│ └────────────────────────┘                     │  ───────────────────────  │ │
+│                                                │  GET    /users            │ │
+│                                                │  GET    /users/{id}       │ │
+│                                                │  POST   /users            │ │
+│                                                │  PUT    /users/{id}       │ │
+│                                                │  DELETE /users/{id}       │ │
+│                                                └─────────────┬─────────────┘ │
+│                                                              │               │
+│                                                              ▼               │
+│                                                ┌───────────────────────────┐ │
+│                                                │ In-Memory User Store      │ │
+│                                                │ (e.g., list/dict)         │ │
+│                                                │                           │ │
+│                                                └───────────────────────────┘ │
+│                                                                              │
+├──────────────────────────────────────────────────────────────────────────────┤
+│ Local Dev Flow                                                               │
+│    git clone → cd project → pip install -r requirements.txt → python app.py  │
+│    → Test with test-api.http or browser → iterate                            │
+├──────────────────────────────────────────────────────────────────────────────┤
+│ Deploy to Azure App Service (Linux)                                          │
+│                                                                              │
+│ ┌───────────────┐     push / az deploy      ┌──────────────────────────────┐ │
+│ │ GitHub Repo   │ ────────────────────────► │ Azure App Service (Gunicorn) │ │
+│ └───────────────┘                           │ Public URL (HTTPS)           │ │
+│                                             │ Auto scale • Logging • CI/CD │ │
+│                                             └──────────────────────────────┘ │
+├──────────────────────────────────────────────────────────────────────────────┤
+│ Project Structure (key files)                                                │
+│   app.py          → Flask application & routes                               │
+│   requirements.txt → Python dependencies                                     │
+│   test-api.http    → Ready-made requests for REST Client                     │
+│   README.md        → Documentation                                           │
+└──────────────────────────────────────────────────────────────────────────────┘
+```
