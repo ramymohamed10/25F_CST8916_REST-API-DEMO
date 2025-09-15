@@ -115,3 +115,27 @@ To learn how to deploy a Python web app (Django, Flask, or FastAPI) to Azure App
 │   README.md        → Documentation                                           │
 └──────────────────────────────────────────────────────────────────────────────┘
 ```
+
+## Homework (Self-Study)
+
+To better understand how a REST API is built with Flask, go through the source code in **app.py** and complete the following:
+
+1. **Trace the Code**
+   - Identify where the Flask app is created.
+   - Locate the routes (`/users`, `/users/<id>`) and note which HTTP methods each supports.
+   - See how data is stored (in-memory) and how JSON is returned.
+
+2. **Test the Endpoints**
+   - Run the app locally and use `test-api.http` or `curl` to try all CRUD operations.
+   - Observe the status codes (200, 201, 404, etc.) and responses.
+
+3. **Reflect**
+   - Make sure you are able to describe how a request like `POST /users` flows:
+     - From the request body → Flask route → data store → JSON response.
+
+4. **Optional Enhancement**
+   - Add one small improvement (e.g., input validation, error handling, or duplicate ID check).
+   - Test your change with a sample request.
+
+This is not a graded activity.
+
