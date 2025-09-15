@@ -67,7 +67,47 @@ You can learn more about Azure App Service and its features in the [official doc
 
 To learn how to deploy a Python web app (Django, Flask, or FastAPI) to Azure App Service, refer to the [Quickstart Guide](https://learn.microsoft.com/en-us/azure/app-service/quickstart-python?tabs=flask%2Cwindows%2Cazure-cli%2Cazure-cli-deploy%2Cdeploy-instructions-azportal%2Cterminal-bash%2Cdeploy-instructions-zip-azcli). This guide walks you through deploying a Python web app to Azure, leveraging App Service to run your app in a Linux server environment.
 
-## ASCII diagram
+## Why the URL is different (Local vs Azure)
+
+When you run your Flask API **on your own laptop**:
+- Flask is started with `python app.py`.
+- You tell it to listen on **port 8000**.
+- The URL is:  
+  **http://localhost:8000/**  
+  - **localhost** = your own computer  
+  - **8000** = the port number you picked  
+
+When you deploy the same app to **Azure App Service**:
+- Azure gives your app a **public web address** like:  
+  **https://cst8916-ramy-xxxx.azurewebsites.net/**
+- Azure always serves your site using the **standard web ports**:  
+  - **80** for HTTP  
+  - **443** for HTTPS (secure)  
+- That’s why the browser only shows `https://...` — because port 443 is the default.
+
+---
+
+### Think of it like this 🚪
+- **Localhost:8000** → your house, back door, you choose the number (“8000”).  
+- **Azure URL (443)** → a public library with one main entrance, number already set (443 = HTTPS).  
+  You can’t change the public entrance — Azure manages it.
+
+---
+
+### Diagram
+
+```text
+LOCAL (your laptop)                          AZURE (cloud hosting)
+───────────────────────                      ─────────────────────────────
+Browser → http://localhost:8000/             Browser → https://yourapp.azurewebsites.net/
+          |                                             |
+          | port 8000 (you chose it)                    | port 443 (default HTTPS)
+          ↓                                             ↓
+      Flask app (python app.py)                   Azure front door → your Flask app
+                                                  (internally still listening 8000)
+```
+
+## High-Level ASCII diagram
 
 ```
 ┌──────────────────────────────────────────────────────────────────────────────┐
