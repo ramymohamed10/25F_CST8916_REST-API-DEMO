@@ -85,14 +85,12 @@ When you deploy the same app to **Azure App Service**:
   - **443** for HTTPS (secure)  
 - That’s why the browser only shows `https://...` — because port 443 is the default.
 
----
 
-### Think of it like this 🚪
+### Think of it like this
 - **Localhost:8000** → your house, back door, you choose the number (“8000”).  
 - **Azure URL (443)** → a public library with one main entrance, number already set (443 = HTTPS).  
   You can’t change the public entrance — Azure manages it.
 
----
 
 ### Diagram
 
